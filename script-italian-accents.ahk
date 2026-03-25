@@ -24,3 +24,22 @@
     else
         Send("{U+0060}" char)
 }
+
+!':: {
+    ih := InputHook("L1 T2", "{Esc}")
+    ih.Start()
+    ih.Wait()
+
+    char := ih.Input
+    accents := Map(
+        "e", "{U+00E9}",
+        "E", "{U+00C9}"
+    )
+
+    if accents.Has(char)
+        Send(accents[char])
+    else if (char = "")
+        Send("'")
+    else
+        Send("'" char)
+}
